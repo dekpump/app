@@ -8,7 +8,9 @@ gem 'spree'
 
 gem 'sqlite3'
 
-gem 'spree_multi_domain','3.0.4',:git => 'git://github.com/spree/spree-multi-domain.git'
+#gem 'spree_multi_domain','3.0.4',:git => 'git://github.com/spree/spree-multi-domain.git'
+
+gem "spree_multi_domain", :path => "vendor/extensions/spree-multi-domain/"
 
 # Use unicorn as the web server
 # gem 'unicorn'

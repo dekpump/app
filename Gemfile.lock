@@ -1,6 +1,5 @@
-GIT
-  remote: git://github.com/spree/spree-multi-domain.git
-  revision: 0f3db82ea1ef0e7b13483857c3c3521e3ef11579
+PATH
+  remote: vendor/extensions/spree-multi-domain/
   specs:
     spree_multi_domain (3.0.4)
       spree_core (>= 0.40.0)
@@ -150,5 +149,5 @@ PLATFORMS
 DEPENDENCIES
   rails (= 3.0.7)
   spree
-  spree_multi_domain (= 3.0.4)!
+  spree_multi_domain!
   sqlite3
