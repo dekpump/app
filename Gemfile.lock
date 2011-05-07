@@ -4,6 +4,12 @@ PATH
     spree_multi_domain (3.0.4)
       spree_core (>= 0.40.0)
 
+PATH
+  remote: vendor/extensions/spree_paypal_express/
+  specs:
+    spree_paypal_express (1.0.0)
+      spree_core (>= 0.40.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -150,4 +156,5 @@ DEPENDENCIES
   rails (= 3.0.7)
   spree
   spree_multi_domain!
+  spree_paypal_express!
   sqlite3

@@ -239,6 +239,13 @@ ActiveRecord::Schema.define(:version => 20110314192118) do
     t.string   "avs_response"
   end
 
+  create_table "paypal_accounts", :force => true do |t|
+    t.string "email"
+    t.string "payer_id"
+    t.string "payer_country"
+    t.string "payer_status"
+  end
+
   create_table "preferences", :force => true do |t|
     t.string   "name",       :limit => 100, :null => false
     t.integer  "owner_id",   :limit => 30,  :null => false

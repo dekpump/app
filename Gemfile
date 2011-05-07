@@ -12,6 +12,8 @@ gem 'sqlite3'
 
 gem "spree_multi_domain", :path => "vendor/extensions/spree-multi-domain/"
 
+gem "spree_paypal_express", :path => 'vendor/extensions/spree_paypal_express/'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
