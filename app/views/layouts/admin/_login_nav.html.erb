@@ -1,0 +1,9 @@
+<!-- Set Button In Menu Bar -->
+
+<% if  current_user %>
+  <ul id="login-nav"> 
+    <li><%= link_to_with_icon('vcard_edit','', edit_user_path(current_user), {:title => "User Account Setting"}) %></li>
+    <li><%= link_to_with_icon('door_in','', destroy_user_session_path, {:title => "Log Out"}) %></li>
+    <li><%= link_to_with_icon('application_home','', products_path, {:title => "Go to Shop"}) %></li>  
+  </ul>
+<% end %>

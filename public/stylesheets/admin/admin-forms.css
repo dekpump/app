@@ -9,7 +9,7 @@
    
 -------------------------------------------------------------- */
 
-label       { font-weight: bold; }
+label       { color: #333; }
 fieldset    { padding:1.4em; margin: 0 0 1.5em 0; border: 1px solid #ccc; }
 legend      { font-weight: bold; font-size:1.2em; margin:0; }
 
@@ -80,18 +80,25 @@ form div.right.w30 {
 -------------------------------------------------------------- */
 
 .flash {
-  font-size:130%;font-weight:bold;
-  padding: .4em 0 .4em 38px; margin-bottom: 1em;
-  border:1px solid #c00;
-  border-left:none;border-right:none;
+  margin-bottom:10px;
 }
 .flash.error {
-  background: #FDE4E4 url(../../images/admin/icons/exclamation.png) 10px center no-repeat;
-  color:#c00; border-color:#c00;
+  color:#fff;
+  margin-bottom:10px;
+  background:#ff5351 url('../../images/admin/admin-mystore/screen-flash.png') 0 -804px repeat-x;
+}
+.flash.error div{
+  padding:8px 8px 8px 40px;
+  background:transparent url('../../images/admin/admin-mystore/screen-flash.png') 0 -938px no-repeat;
 }
 .flash.notice {
-  background: #E7F8D7 url(../../images/admin/icons/tick.png) 10px center no-repeat;
-  color:#59A151; border-color: #59A151;
+  color:#fff;
+  margin-bottom:10px;
+  background: url('../../images/admin/admin-mystore/screen-flash.png') 0 -268px repeat-x
+}
+.flash.notice div{
+  padding:8px 8px 8px 40px;
+  background:transparent url('../../images/admin/admin-mystore/screen-flash.png') 0 -402px no-repeat
 }
 
 .withError {

@@ -1,11 +1,11 @@
 .dashboard h2{
   padding-bottom:5px;
-  color: #476D9B;
+  color: #0D6B54;
   clear:both;
 }
 
 .dashboard_left{
-  width:25%;
+  width:45%;
   float:left;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .dashboard_main #orders_by_day_options{
-  background-color:#0095DA;
+  background-color:#FCF7E3;
   -moz-border-radius-bottomleft:10px;
   -moz-border-radius-bottomright:10px;
   -moz-border-radius-topleft:10px;
@@ -32,12 +32,12 @@
 
 #order_by_day_title{
   padding-bottom:5px;
-  color: #476D9B;
+  color: #0D6B54;
   clear:both;
 }
 
 #order_totals{
-  background:#154E8C url(../../images/admin/bg/admin_tab_back.png) repeat-x scroll left top;
+  background: #0D6B54;
   -moz-border-radius-bottomleft:10px;
   -moz-border-radius-bottomright:10px;
   -moz-border-radius-topleft:10px;
@@ -65,7 +65,7 @@
   padding: 0px 10px;
   font-size: 50px;
   line-height: 60px;
-  color: #476D9B;
+  color: #FFF;
 }
 
 #order_totals p{
@@ -79,6 +79,7 @@
 #order_totals label{
   font-size:200%;
   line-height:50px;
+  color: #FFF;
 }
 
 #order_totals span{
@@ -95,11 +96,12 @@
 .dashboard_right{
   width:20%;
   float:left;
+  display: none;
 }
 
 .dashboard table th{
-  background-color: #0095DA;
-  color: #fff;
+  background-color: #FCF7E3;
+  color: #333;
 }
 
 .dashboard_small_wrapper{
