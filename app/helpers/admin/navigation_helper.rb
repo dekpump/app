@@ -1,5 +1,6 @@
 module Admin::NavigationHelper
 
+
   # Make an admin tab that coveres one or more resources supplied by symbols
   # Option hash may follow. Valid options are
   #   * :label to override link text, otherwise based on the first resource name (translated)
@@ -44,6 +45,10 @@ module Admin::NavigationHelper
 
   def link_to_edit(resource, options={})
     link_to_with_icon('edit', t("edit"), edit_object_url(resource), options)
+  end
+  
+  def link_to_edit_url(url, options={})
+    link_to_with_icon('edit', t("edit"), url, options)
   end
 
   def link_to_clone(resource, options={})

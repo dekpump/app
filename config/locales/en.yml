@@ -2,4 +2,38 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  purchases: "Purchases"
+  purchase: "Purchase"
+  new_purchase: "New Purchase"
+  listing_purchases: "Listing Purchases"
+  purchase_date: "Purchase Date"
+  purchase_number: "Purchase"
+  purchase_total: "Purchase Total"
+
+
+
+  new_supplier: "New Supplier"
+  suppliers: "Suppliers"
+
+
+
+  add_order: "Add Order"
+
+
+
+  warehouse: "Warehouse"
+  account: "Accounting"
+
+  purchase_state:
+    # keys correspond to Checkout state names:
+    address: address
+    adjustments: adjustments
+    awaiting_return: awaiting return
+    canceled: canceled
+    waiting: waiting
+    complete: complete
+    confirm: confirm
+    delivery: delivery
+    payment: payment
+    resumed: resumed
+    returned: returned

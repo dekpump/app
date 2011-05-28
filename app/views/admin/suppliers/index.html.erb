@@ -1,0 +1,76 @@
+<%= render :partial => 'admin/shared/supplier_sub_menu' %>
+
+<div class='toolbar'>
+  <ul class="actions">
+    <li id="new_supplier_link">
+       <%= button_link_to t("new_supplier"), new_object_url, {:remote => true, :icon => 'add', :id => 'admin_new_supplier'} %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+
+<h1><%= "#{t("actions.listing")} #{t("suppliers")}" %></h1>
+
+<div id="new_supplier"></div>
+
+<table class="index" id='listing_suppliers'>
+  <tr>
+    <%= hook :admin_suppliers_index_headers do %>
+      <th><%= t("code") %></th>
+      <th><%= sort_link @search,:name, t("name"), {}, {:title => 'admin_supplier_listing_name_title'} %></th>
+
+    <% end %>
+    <th>
+      <%= hook :admin_suppliers_index_header_actions %>
+    </th>
+  </tr>
+  <% @collection.each do |supplier| %>
+  <tr <%= 'style="color:red;"' if supplier.deleted? %> id="<%= dom_id supplier %>">
+    <%- locals = {:supplier => supplier} %>
+    <%= hook :admin_suppliers_index_rows, locals do %>
+      <td><%= supplier.code %></td>
+      <td><%= supplier.name %></td>
+
+    <% end %>
+    <td class="actions">
+      <%= hook :admin_suppliers_index_row_actions, locals do %>
+        <%= link_to_edit supplier, :class => 'edit' unless supplier.deleted?  %>
+        &nbsp;
+        <%= link_to_delete supplier unless supplier.deleted?  %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
+
+<% content_for :sidebar do %>
+
+  <%= form_for [:admin, @search] do |f| %>
+    <div class="box">
+      <h3><%= t(:search) %></h3>
+
+      <%- locals = {:f => f} %>
+      <%= hook :admin_suppliers_index_search, locals do %>
+        <p>
+          <%= f.label :name_contains, t("name") %><br />
+          <%= f.text_field :name_contains, :size => 15 %>
+        </p>
+        <p>
+          <%= f.label :deleted_at_is_null, t("show_deleted") %><br />
+          <%= f.check_box :deleted_at_is_null, {:checked => params[:search][:deleted_at_is_null].blank?}, "", "1" %>
+        </p>
+      <% end %>
+
+      <%= hook :admin_suppliers_index_search_buttons, locals do %>
+        <p class="form-buttons">
+          <%= button t("search") %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+
+<% end %>
+

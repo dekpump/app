@@ -1,0 +1,55 @@
+<%= render 'shared/error_messages', :target => @purchase %>
+<% if @line_item.try(:errors).present? %>
+   <%= render 'shared/error_messages', :target => @line_item %>
+<% end %>
+
+<%= form_for(@purchase, :url => admin_purchase_url(@purchase), :html => { :method => :put}) do |f| %>
+   <%= f.hidden_field :number %>
+   <table class="index">
+     <tbody id='line-items'>
+        <tr>
+          <%= hook :admin_purchase_form_line_items_headers do %>
+            <th><%= t('item_description') %></th>
+            <th class="price"><%= t('price') %></th>
+              <th class="qty"><%= t('qty') %></th>
+              <th class="total"><%= t('total') %></th>
+          <% end %>
+          <th class="purchases-actions"><%= hook :admin_purchase_form_line_items_header_actions %></th>
+        </tr>
+        <%= f.fields_for :purchase_line_items do |li_form| %>
+           <%= render :partial => "admin/purchases/line_item", :locals => { :f => li_form} %>
+        <% end %>
+
+     </tbody>
+     <%= hook :admin_purchase_form_subtotal do %>
+        <tbody id='subtotal'>
+            <tr id="subtotal-row">
+              <td colspan="3"><b><%= t('subtotal') %>:</b></td>
+              <td class="total"><span><%=  number_to_currency @purchase.item_total %></span></td>
+              <td></td>
+            </tr>
+        </tbody>
+     <% end %>
+     <%= hook :admin_purchase_form_total do %>
+      <tbody id='purchase-total'>
+        <tr>
+          <td colspan="3"><b><%= t('purchase_total') %>:</b></td>
+          <td class="total"><span id="purchase_total"><%= number_to_currency @purchase.total %></span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    <% end %>
+
+   </table>
+    <%= hook :admin_purchase_form_buttons do %>
+    <p class="form-buttons">
+      <%= button  t('update')  %>
+      <%= t("or") %> <%= link_to t("actions.cancel"), admin_purchases_url %>
+    </p>
+  <% end %>
+
+<% end %>
+
+
+
+<%= javascript_include_tag 'admin/purchases/edit_form.js' %>

@@ -1,0 +1,87 @@
+<div class='toolbar purchase-links'>
+  <%= button_link_to t("new_purchase"), new_admin_purchase_url, :icon => 'add', :id => 'admin_new_purchase' %>
+</div>
+
+<%= render :partial => 'admin/shared/purchase_sub_menu' %>
+
+<h1><%= t("listing_purchases") %></h1>
+
+<table class="index" id='listing_purchases'>
+  <thead>
+    <tr>
+      <%= hook :admin_purchases_index_headers do %>
+        <% if @show_only_completed %>
+          <th><%= sort_link @search, :completed_at, t("activerecord.attributes.purchase.completed_at") %></th>
+        <% else %>
+          <th><%= sort_link @search, :created_at,   t("purchase_date") %></th>
+        <% end %>
+        <th><%= sort_link @search, :number,         t("purchase_number") %></th>
+        <th><%= sort_link @search, :state,          t("status") %></th>
+        <th><%= sort_link @search, :item_total,     t("item_total") %></th>
+        <th><%= sort_link @search, :total,          t("total") %></th>
+      <% end %>
+
+        <th>
+          <%= hook :admin_purchase_index_header_actions %>
+        </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @purchases.each do |purchase| %>
+    <tr>
+      <%- locals = {:purchase => purchase} %>
+      <%= hook :admin_purchase_index_rows, locals do %>
+        <td><%= (@show_only_completed ? purchase.completed_at : purchase.created_at).to_date %></td>
+        <td><%= link_to purchase.number, object_url(purchase) %></td>
+        <td><%= t("purchase_state.#{purchase.state.downcase}") %></td>
+        <td><%= purchase.item_total %></td>
+        <td><%= number_to_currency purchase.total %></td>
+
+      <% end %>
+      <td class='actions'>
+        <%= hook :admin_purchases_index_row_actions, locals do %>
+            <%= link_to_edit purchase, :title => "admin_edit_#{dom_id(purchase)}" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+<%= will_paginate(@purchases, :previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
+
+<% content_for :sidebar do %>
+<div class="box">
+  <h3><%= t(:search) %></h3>
+  <%= form_for [:admin, @search] do |f| %>
+    <%- locals = {:f => f} %>
+    <%= hook :admin_purchases_index_search, locals do %>
+        <label><%= t("date_range") %></label><br/>
+        <div class="yui-g date-range-filter">
+          <div class="yui-u sub-field first">
+            <%= f.spree_date_picker :created_at_greater_than %><br/>
+            <label class="sub"><%= t("start") %></label>
+          </div>
+          <div class="yui-u sub-field">
+            <%= f.spree_date_picker :created_at_less_than %><br/>
+            <label><%= t("stop") %></label>
+          </div>
+        </div>
+
+        <p><label><%= t("status") %></label><br/>
+          <%= f.select :state_equals, Purchase.state_machines[:state].states.collect {|s| [t("purchase_state.#{s.name}"), s.value]}, {:include_blank => true} %>
+        </p>
+
+        <p>
+          <label><%=  t('purchase_number') %></label><br/>
+          <%= f.text_field :number_like, :size=>25 %>
+        </p>
+    <% end %>
+
+    <%= hook :admin_purchases_index_search_buttons, locals do %>
+       <p><%= button t("search") %></p>
+    <% end %>
+  <% end %>
+</div>
+<% end %>

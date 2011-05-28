@@ -1,0 +1,20 @@
+<%= render :partial => 'admin/shared/purchase_tabs', :locals => {:current => "Purchase Details"} %>
+<%= csrf_meta_tag %>
+
+<%= hook :admin_purchase_new_header do %>
+    <h2><%= t("new_purchase")%></h2>
+    <%= render 'shared/error_messages', :target => @purchase %>
+<% end %>
+
+<%= render :partial => "add_order" %>
+
+<%= hook :admin_purchase_new_form do %>
+  <div id="purchase-form-wrapper">
+    <%= render :partial => "form" %>
+  </div>
+<% end %>
+
+<% content_for :head do %>
+  <%= javascript_tag "var expand_variants = true;" %>
+  <%= javascript_include_tag 'admin/purchases/edit.js' %>
+<% end %>

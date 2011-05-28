@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110324195441) do
+ActiveRecord::Schema.define(:version => 20110512233535) do
 
   create_table "ad_hoc_option_types", :force => true do |t|
     t.integer  "product_id"
@@ -547,6 +547,14 @@ ActiveRecord::Schema.define(:version => 20110324195441) do
     t.datetime "updated_at"
     t.boolean  "default",    :default => false
     t.string   "email"
+  end
+
+  create_table "suppliers", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "tax_categories", :force => true do |t|

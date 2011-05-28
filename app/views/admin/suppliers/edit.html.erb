@@ -1,0 +1,17 @@
+<%= render :partial => 'admin/shared/supplier_sub_menu' %>
+
+
+
+<%= form_for(@supplier, :url => object_url, :html => { :method => :put, :multipart => true }) do |f| %>
+    <fieldset>
+      <%= f.field_container :name do %>
+        <%= f.label :name, t("name") %> <span class="required">*</span><br />
+        <%= f.text_field :name, :class => 'fullwidth title'  %>
+        <%= f.error_message_on :name %>
+      <% end %>
+      <%= render :partial => 'admin/shared/edit_resource_links' %>
+    </fieldset>
+
+<% end %>
+
+
